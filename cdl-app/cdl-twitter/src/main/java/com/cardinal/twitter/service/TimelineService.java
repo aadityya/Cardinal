@@ -31,11 +31,11 @@ public class TimelineService {
         Twitter twitter = tf.getInstance();
 
         try {
-            ResponseList<User> users = twitter.lookupUsers(userName);
+            ResponseList<Status> statuses = twitter.getUserTimeline(userName);
 
-            for(User user : users) {
+            for(Status status : statuses) {
                 Tweet tweet = new Tweet();
-                tweet.setMessage(user.getStatus().getText());
+                tweet.setMessage(status.getText());
                 tweets.add(tweet);
             }
         } catch (TwitterException e) {
